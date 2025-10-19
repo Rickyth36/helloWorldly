@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import axios from 'axios';
+import { setAlert } from '../../actions/alert';
 
-function Register() {
+
+function Register({setAlert}) {
     const [formData, setFormData] = useState({
         name:'',
         email:'',
@@ -13,10 +16,12 @@ function Register() {
     const onChange = e => setFormData({
         ...formData,[e.target.name]:e.target.value
     })
+   const {name, email, password, password2} = formData;        
 
     const onSubmit = async e => {
         e.preventDefault();
         if(password !== password2){
+            setAlert('Passwords do not match','danger');
             console.log('Password do not match');
         }else{
             const newUser = {
@@ -42,7 +47,7 @@ function Register() {
 
     }
 
-    const {name, email, password, password2} = formData;    
+ 
     return (
         <>
             <h1 className="large text-primary">Sign Up</h1>
@@ -89,4 +94,4 @@ function Register() {
     )
 }
 
-export default Register
+export default connect(null,{setAlert})(Register);

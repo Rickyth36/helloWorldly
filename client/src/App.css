@@ -488,6 +488,56 @@ button {
   margin-bottom: 0.5rem;
 }
 
+
+
+
+
+
+
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  position: fixed;
+  z-index: 1000; /* on top */
+  width: 100%;
+  top: 0;
+  border-bottom: solid 1px var(--primary-color);
+  background-color: var(--dark-color); /* optional for visibility */
+  opacity: 0.95;
+  height: 60px; /* define height */
+}
+.alert-container {
+  position: fixed;
+  top: 60px; /* below navbar */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+  gap: 0.5rem; /* space between alerts */
+  z-index: 1050;
+}
+
+.alert {
+  width: 90%; /* or max-width: 500px */
+  text-align: center;
+  opacity: 0.95;
+  padding: 0.8rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+  margin-top: 120px; /* navbar 60px + alert approx 60px */
+  margin-bottom: 3rem;
+}
+
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {
