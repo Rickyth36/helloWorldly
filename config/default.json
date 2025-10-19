@@ -1,0 +1,6 @@
+{
+    "mongoURI":"mongodb+srv://ricky123:ricky123@helloworldly.jcludqz.mongodb.net/?retryWrites=true&w=majority&appName=helloWorldly",
+    "jwtSecret":"mysecrettoken",
+    "githubClientId":"Ov23liFVQBEBb9CNLoaD",
+    "githubSecret":"00299de6ceadeb168cf8bd00e18507b1d54714c6"
+}
