@@ -1,31 +1,35 @@
 import './App.css';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Alert from './components/layout/Alert';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
 
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
 
+if(localStorage.token){
+  setAuthToken(localStorage.token);
+}
+
 function App() {
+  useEffect(()=>{
+    store.dispatch(loadUser());
+  },[])
   return (
     <Provider store={store}>
       <Router>
         <Fragment>
           <Navbar />
-          {/* Alerts can be outside Routes */}
           <Alert />
-
-          {/* Routes */}
           <Routes>
-            {/* Landing without container */}
             <Route path="/" element={<Landing />} />
 
-            {/* Pages inside container */}
             <Route
               path="/login"
               element={

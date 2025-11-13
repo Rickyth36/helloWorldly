@@ -7,9 +7,9 @@ const {check,validationResult} = require('express-validator');
 const config = require('config');
 const bcrypt = require('bcryptjs')
 
-router.get('/',auth,(req,res)=>{
+router.get('/',auth,async(req,res)=>{
     try {
-        const user  = User.findById(req.user.id).select('-password');
+        const user  = await User.findById(req.user.id).select('-password');
         res.json({user});
         
     } catch (error) {
@@ -22,7 +22,7 @@ router.get('/',auth,(req,res)=>{
 
 router.post('/',[
     check('email','Please include a valid email').isEmail(),
-    check('password','Password is requires').exists()
+    check('password','Password is required').exists()
 ],async(req,res)=>{
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -61,8 +61,6 @@ router.post('/',[
         res.status(500).send('Server error');
     }
 
-
-    res.send('User route');
 })
 
 module.exports = router;
